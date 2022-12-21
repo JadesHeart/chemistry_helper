@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+<div style="position:relative;
+left: 0;">
+    <div class="container">
+        <div class="row mt-4">
+
+            <form class="col-4 g-3 align-self-top form">
+                <div class="row p-3">
+                    <div class="input-group">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Название элемента">
+                        <button type="submit" class="btn btn-secondary">Найти</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col table-responsive-sm align-self-center" style="position:relative;
+left: 0;" >
+                <table class="table table-bordered caption-top">
+                    <caption>Константы равновесия </caption>
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col">Название</th>
+                        <th scope="col">Формула</th>
+                        <th scope="col">K(a)K(b)</th>
+                        <th scope="col">pK(a)pK(b)</th>
+                    </tr>
+                    </thead>
+                    <tbody id="balance">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="
+  left: 0;">
+        <div class="row mt-4">
+
+            <form class="col-4 g-3 align-self-top form" id="instabilityForm">
+                <div class="row p-3">
+                    <div class="input-group">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Название элемента">
+                        <button type="submit" class="btn btn-secondary">Найти</button>
+                    </div>
+                </div>
+            </form>
+            <div class="col table-responsive-sm align-self-center" style="">
+                <table class="table table-bordered caption-top">
+                    <caption>Константы нестойкости </caption>
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col">Метал</th>
+                        <th scope="col">Легадн</th>
+                        <th scope="col">Комплекс</th>
+                        <th scope="col">K</th>
+                    </tr>
+                    </thead>
+                    <tbody id="instability0">
+                    </tbody>
+                    <tbody id="instability1">
+                    </tbody>
+                    <tbody id="instability2">
+                    </tbody>
+                    <tbody id="instability3">
+                    </tbody>
+                    <tbody id="instability4">
+                    </tbody>
+                    <tbody id="instability5">
+                    </tbody>
+                    <tbody id="instability6">
+                    </tbody>
+                    <tbody id="instability7">
+                    </tbody>
+                    <tbody id="instability8">
+                    </tbody>
+                    <tbody id="instability9">
+                    </tbody>
+                    <tbody id="instability10">
+                    </tbody>
+                </table>
+            </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="
+  left: 0;">
+        <div class="row mt-4">
+
+            <form class="col-4 g-3 align-self-top form" id="baseForm">
+                <div class="row p-3">
+                    <div class="input-group">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Название элемента">
+                        <button type="submit" class="btn btn-secondary">Найти</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col table-responsive-sm align-self-center" style="">
+                <table class="table table-bordered caption-top">
+                    <caption>Базовые харрактеристики</caption>
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col">ElName</th>
+                        <th scope="col">ElectronicConfiguration</th>
+                        <th scope="col">StabilityOxidation</th>
+                        <th scope="col">MeltingPoint</th>
+                        <th scope="col">BoilingPoint</th>
+                        <th scope="col">ChemicalCompounds</th>
+                    </tr>
+                    </thead>
+                    <tbody id="base">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="
+  left: 0;">
+        <div class="row mt-4">
+
+            <form class="col-4 g-3 align-self-top form" id="termForm">
+                <div class="row p-3">
+                    <div class="input-group">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Название элемента">
+                        <button type="submit" class="btn btn-secondary">Найти</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col table-responsive-sm align-self-center">
+                <table class="table table-bordered caption-top">
+                    <caption>Термоденамические харрактеристики</caption>
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col">Название элемента</th>
+                        <th scope="col">Формула</th>
+                        <th scope="col">FirstParam</th>
+                        <th scope="col">SecondParam</th>
+                        <th scope="col">ThirdParam</th>
+                        <th scope="col">FourthParam</th>
+                    </tr>
+                    </thead>
+                    <tbody id="term">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="
+  left: 0;">
+        <div class="row mt-4">
+
+            <form class="col-4 g-3 align-self-top form" id="potentialForm">
+                <div class="row p-3">
+                    <div class="input-group">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Название элемента">
+                        <button type="submit" class="btn btn-secondary">Найти</button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="col table-responsive-sm align-self-center">
+                <table class="table table-bordered caption-top">
+                    <caption>Потенциалы</caption>
+                    <thead class="table-light">
+                    <tr>
+                        <th scope="col">Number</th>
+                        <th scope="col">Symbol</th>
+                        <th scope="col">ElName</th>
+                        <th scope="col">HalfReactions</th>
+                        <th scope="col">LastParam</th>
+                    </tr>
+                    </thead>
+                    <tbody id="potential0">
+                    </tbody>
+                    <tbody id="potential1">
+                    </tbody>
+                    <tbody id="potential2">
+                    </tbody>
+                    <tbody id="potential3">
+                    </tbody>
+                    <tbody id="potential4">
+                    </tbody>
+                    <tbody id="potential5">
+                    </tbody>
+                    <tbody id="potential6">
+                    </tbody>
+                    <tbody id="potential7">
+                    </tbody>
+                    <tbody id="potential8">
+                    </tbody>
+                    <tbody id="potential9">
+                    </tbody>
+                    <tbody id="potential10">
+                    </tbody>
+                    <tbody id="potential11">
+                    </tbody>
+                    <tbody id="potential12">
+                    </tbody>
+                    <tbody id="potential13">
+                    </tbody>
+                    <tbody id="potential14">
+                    </tbody>
+                    <tbody id="potential15">
+                    </tbody>
+                    <tbody id="potential16">
+                    </tbody>
+                    <tbody id="potential17">
+                    </tbody>
+                    <tbody id="potential18">
+                    </tbody>
+                    <tbody id="potential19">
+                    </tbody>
+                    <tbody id="potential20">
+                    </tbody>
+                    <tbody id="potential21">
+                    </tbody>
+                    <tbody id="potential22">
+                    </tbody>
+                    <tbody id="potential23">
+                    </tbody>
+                    <tbody id="potential24">
+                    </tbody>
+                    <tbody id="potential25">
+                    </tbody>
+                    <tbody id="potential26">
+                    </tbody>
+                    <tbody id="potential27">
+                    </tbody>
+                    <tbody id="potential28">
+                    </tbody>
+                    <tbody id="potential29">
+                    </tbody>
+                    <tbody id="potential30">
+                    </tbody>
+                    <tbody id="potential31">
+                    </tbody>
+                    <tbody id="potential32">
+                    </tbody>
+                    <tbody id="potential33">
+                    </tbody>
+                    <tbody id="potential34">
+                    </tbody>
+                    <tbody id="potential35">
+                    </tbody>
+                    <tbody id="potential36">
+                    </tbody>
+                    <tbody id="potential37">
+                    </tbody>
+                    <tbody id="potential38">
+                    </tbody>
+                    <tbody id="potential39">
+                    </tbody>
+                    <tbody id="potential40">
+                    </tbody>
+                    <tbody id="potential41">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="main.js"></script>
+</body>
+
+</html>

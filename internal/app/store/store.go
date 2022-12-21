@@ -31,3 +31,7 @@ func (store *Store) Open() error {
 func (store *Store) Close() {
 	store.db.Close()
 }
+
+func (store *Store) GetterDB() *sql.DB {
+	return store.db
+}

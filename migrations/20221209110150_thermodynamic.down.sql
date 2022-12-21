@@ -1,0 +1,1 @@
+DROP TABLE thermodynamic_characteristics;

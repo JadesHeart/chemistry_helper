@@ -1,18 +1,20 @@
 package apiserver
 
 import (
-	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
 	"net/http"
-	store2 "vitalic_project/internal/app/store"
+	"vitalic_project/internal/app/controller"
+	"vitalic_project/internal/app/repository"
+	"vitalic_project/internal/app/store"
 )
 
 type APIserver struct {
 	config *ServerConfig
 	logger *logrus.Logger
 	router *mux.Router
-	store  *store2.Store
+	store  *store.Store
+	repo   *repository.MainRepo
 }
 
 func ServerInit(config *ServerConfig) *APIserver {
@@ -20,23 +22,29 @@ func ServerInit(config *ServerConfig) *APIserver {
 		config: config,
 		logger: logrus.New(),
 		router: mux.NewRouter(),
-		store:  store2.NewStore(store2.NewDataBaseConfig()),
+		store:  store.NewStore(store.NewDataBaseConfig()),
 	}
 }
 
-func (api *APIserver) Start() error {
+func (api *APIserver) Start(fill bool) error {
 	if err := api.loggerConfig(); err != nil {
 		return err
 	}
-	api.logger.Info("Сосать жопу")
-
-	api.routerConfig()
+	api.logger.Info("Сервер запустился...")
 
 	if err := api.store.Open(); err != nil {
 		return err
 	}
 
+	api.repoConfig()
+
+	api.routerConfig(fill)
+
 	return http.ListenAndServe("localhost"+api.config.Bind, api.router)
+}
+
+func (api *APIserver) repoConfig() {
+	api.repo = repository.NewMainRepo(api.store)
 }
 
 func (api *APIserver) loggerConfig() error {
@@ -48,9 +56,7 @@ func (api *APIserver) loggerConfig() error {
 	return nil
 }
 
-func (api *APIserver) routerConfig() {
-	conn := api.router
-	conn.HandleFunc("/chemistry", func(writer http.ResponseWriter, request *http.Request) {
-		fmt.Fprintf(writer, "Жопа хуй")
-	})
+func (api *APIserver) routerConfig(fill bool) {
+	contr := controller.NewControllers()
+	contr.BuildControllers(api.repo, api.router, fill, api.logger)
 }

@@ -24,6 +24,6 @@ func loadConfiguration(file string) *ServerConfig {
 }
 
 func NewServerConfig() *ServerConfig {
-	config := loadConfiguration("C:/Users/лали/Desktop/проекты/chemistry/config/config.json")
+	config := loadConfiguration("internal/app/config/config.json")
 	return config
 }

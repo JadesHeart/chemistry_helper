@@ -9,3 +9,5 @@ type BaseVariable struct {
 	BoilingPoint            string
 	ChemicalCompounds       string
 }
+
+// ElName 	ElectronicConfiguration StabilityOxidation MeltingPoint  BoilingPoint  ChemicalCompounds
