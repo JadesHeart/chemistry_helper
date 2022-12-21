@@ -23,5 +23,5 @@ func loadConfiguration(file string) *DataBaseConfig {
 }
 
 func NewDataBaseConfig() *DataBaseConfig {
-	return loadConfiguration("C:/Users/лали/Desktop/проекты/chemistry/config/database_config.json")
+	return loadConfiguration("internal/app/config/database_config.json")
 }

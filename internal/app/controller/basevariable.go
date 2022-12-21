@@ -17,9 +17,9 @@ type BaseVariableController struct {
 func NewBaseVariableController() *BaseVariableController {
 	return &BaseVariableController{}
 }
-func (bvc *BaseVariableController) CreateBaseVrElController(r *repository.BaseVariableRepo, rou *mux.Router) {
-	bvc.Router = rou
-	bvc.Router.HandleFunc("/chemistry/create/base", func(writer http.ResponseWriter, request *http.Request) {
+func (inc *BaseVariableController) CreateBaseVrElController(r *repository.BaseVariableRepo, rou *mux.Router) {
+	inc.Router = rou
+	inc.Router.HandleFunc("/chemistry/create/base", func(writer http.ResponseWriter, request *http.Request) {
 		m := model.BaseVariable{}
 		json.NewDecoder(request.Body).Decode(&m)
 		readParam := ReadAllParam(&m)
@@ -35,9 +35,9 @@ func (bvc *BaseVariableController) CreateBaseVrElController(r *repository.BaseVa
 	})
 }
 
-func (bvc *BaseVariableController) FindBaseVariableElByEmailController(r *repository.BaseVariableRepo, rou *mux.Router) {
-	bvc.Router = rou
-	bvc.Router.HandleFunc("/chemistry/base", func(writer http.ResponseWriter, request *http.Request) {
+func (inc *BaseVariableController) FindBaseVariableController(r *repository.BaseVariableRepo, rou *mux.Router) {
+	inc.Router = rou
+	inc.Router.HandleFunc("/chemistry/base", func(writer http.ResponseWriter, request *http.Request) {
 		m, err := r.FindBaseVarElByName(request.URL.Query().Get("name"))
 		if err == sql.ErrNoRows {
 			fmt.Fprintf(writer, "Такого элемента нет!")

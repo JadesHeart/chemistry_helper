@@ -22,7 +22,6 @@ func (tpc *TermodPropController) CreateThePrElController(r *repository.TermodPro
 	tpc.Router.HandleFunc("/chemistry/create/term", func(writer http.ResponseWriter, request *http.Request) {
 		m := model.TermodProp{}
 		json.NewDecoder(request.Body).Decode(&m)
-		fmt.Println(m)
 		readParam := ReadAllThermoParam(&m)
 		if readParam == "" {
 			if _, err := r.Create(&m); err != nil {
@@ -37,14 +36,26 @@ func (tpc *TermodPropController) CreateThePrElController(r *repository.TermodPro
 	})
 }
 
-func (tpc *TermodPropController) FindThermoChElByEmailController(r *repository.TermodPropRepo, rou *mux.Router) {
+func (tpc *TermodPropController) FindThermoChElController(r *repository.TermodPropRepo, rou *mux.Router) {
 	tpc.Router = rou
 	tpc.Router.HandleFunc("/chemistry/term", func(writer http.ResponseWriter, request *http.Request) {
-		m, err := r.FindTherByName(request.URL.Query().Get("name"))
+		query := request.URL.Query().Get("name")
+		m, err := r.FindTherByName(query)
 		if err == sql.ErrNoRows {
-			fmt.Fprintf(writer, "Такого элемента нет!")
 		} else if m != nil && err == nil {
 			returnedModel, err := json.Marshal(m)
+			if err != nil {
+				fmt.Fprintf(writer, "Неудалось распокавать json")
+			}
+			writer.Header().Set("Content-Type", "application/json")
+			writer.WriteHeader(http.StatusOK)
+			writer.Write(returnedModel)
+		}
+		m1, err1 := r.FindTherByFormula(query)
+		if err1 == sql.ErrNoRows && err == sql.ErrNoRows {
+			fmt.Fprintf(writer, "Такого элемента нет!")
+		} else if m1 != nil && err1 == nil {
+			returnedModel, err := json.Marshal(m1)
 			if err != nil {
 				fmt.Fprintf(writer, "Неудалось распокавать json")
 			}
@@ -57,6 +68,9 @@ func (tpc *TermodPropController) FindThermoChElByEmailController(r *repository.T
 func ReadAllThermoParam(mod *model.TermodProp) string {
 	if mod.ElName == "" {
 		return "нет имени элемента или оно пустое"
+	}
+	if mod.Formula == "" {
+		return "Нет формулы"
 	}
 	if mod.FirstParam == "" {
 		return "нет первого параметра термодинамических свойств элемента"

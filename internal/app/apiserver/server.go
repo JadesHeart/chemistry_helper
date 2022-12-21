@@ -26,7 +26,7 @@ func ServerInit(config *ServerConfig) *APIserver {
 	}
 }
 
-func (api *APIserver) Start() error {
+func (api *APIserver) Start(fill bool) error {
 	if err := api.loggerConfig(); err != nil {
 		return err
 	}
@@ -38,7 +38,7 @@ func (api *APIserver) Start() error {
 
 	api.repoConfig()
 
-	api.routerConfig()
+	api.routerConfig(fill)
 
 	return http.ListenAndServe("localhost"+api.config.Bind, api.router)
 }
@@ -56,7 +56,7 @@ func (api *APIserver) loggerConfig() error {
 	return nil
 }
 
-func (api *APIserver) routerConfig() {
+func (api *APIserver) routerConfig(fill bool) {
 	contr := controller.NewControllers()
-	contr.BuildControllers(api.repo, api.router)
+	contr.BuildControllers(api.repo, api.router, fill, api.logger)
 }
